@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function SpendingChart({ expenses }: Props) {
-    // Group expenses by category and sum amounts
+    // Group expenses by category 
     const chartData = Object.entries(
         expenses.reduce((acc, expense) => {
             acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
@@ -18,6 +18,11 @@ export default function SpendingChart({ expenses }: Props) {
     ).map(([name, value]) => ({ name, value }));
 
     if (chartData.length === 0) return null;
+
+    const tooltipFormatter = (value: unknown) => {
+        const amount = typeof value === "number" ? value : 0;
+        return [`৳${amount.toLocaleString()}`, "Spent"];
+    };
 
     return (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
@@ -40,9 +45,7 @@ export default function SpendingChart({ expenses }: Props) {
                             />
                         ))}
                     </Pie>
-                    <Tooltip
-                        formatter={(value: number) => [`৳${value.toLocaleString()}`, "Spent"]}
-                    />
+                    <Tooltip formatter={tooltipFormatter} />
                     <Legend />
                 </PieChart>
             </ResponsiveContainer>
