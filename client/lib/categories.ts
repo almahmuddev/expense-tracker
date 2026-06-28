@@ -9,10 +9,7 @@ export const CATEGORIES = [
     "Others",
 ] as const;
 
-export const CATEGORY_STYLES: Record
-string,
-    { bg: string; text: string; border: string; emoji: string }
-    > = {
+export const CATEGORY_STYLES: Record<string, { bg: string; text: string; border: string; emoji: string }> = {
     Food: { bg: "bg-orange-100", text: "text-orange-700", border: "border-orange-200", emoji: "🍔" },
     Transport: { bg: "bg-blue-100", text: "text-blue-700", border: "border-blue-200", emoji: "🚌" },
     Shopping: { bg: "bg-pink-100", text: "text-pink-700", border: "border-pink-200", emoji: "🛍️" },
