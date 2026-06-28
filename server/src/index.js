@@ -9,7 +9,19 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://expense-tracker-khaki-three-58.vercel.app",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
+
+
+
 app.use(express.json());
 
 // routes --
